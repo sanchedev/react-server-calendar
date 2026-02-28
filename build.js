@@ -19,7 +19,7 @@ esbuild
 // Server
 esbuild
   .build({
-    entryPoints: ['src/server/server.ts'],
+    entryPoints: ['src/server/server.tsx'],
     jsx: 'automatic',
     loader: {
       '.tsx': 'tsx',
