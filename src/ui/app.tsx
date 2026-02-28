@@ -1,4 +1,5 @@
-import { Counter } from './counter'
+import { Client } from './client'
+import Counter from './counter'
 
 export default function App() {
   return (
@@ -9,7 +10,7 @@ export default function App() {
         <title>React Server Calendar</title>
       </head>
       <body>
-        <Counter />
+        <Client compName='Counter' props={{}} Comp={Counter} />
       </body>
     </html>
   )

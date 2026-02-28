@@ -1,8 +1,9 @@
 'use client'
 
 import { useState } from 'react'
+import z from 'zod'
 
-export function Counter() {
+export default function Counter({}: z.infer<typeof schema>) {
   const [counter, setCounter] = useState(0)
 
   const handleCount = () => {
@@ -11,3 +12,5 @@ export function Counter() {
 
   return <button onClick={handleCount}>{counter}</button>
 }
+
+export const schema = z.object({})
