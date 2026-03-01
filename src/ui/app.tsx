@@ -1,16 +1,21 @@
-import { Client } from './client'
-import Counter from './counter'
+import { Calendar } from './calendar/calendar'
 
-export default function App() {
+interface AppProps {
+  lang: string
+  year: number
+}
+
+export default function App({ lang, year }: AppProps) {
   return (
-    <html lang='en'>
+    <html lang={lang}>
       <head>
         <meta charSet='UTF-8' />
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
         <title>React Server Calendar</title>
+        <link rel='stylesheet' href='/style.css' />
       </head>
       <body>
-        <Client compName='Counter' props={{}} Comp={Counter} />
+        <Calendar lang={lang} year={year} />
       </body>
     </html>
   )
