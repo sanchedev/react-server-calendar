@@ -26,7 +26,7 @@ export function Month({ lang, monthIndex, year }: MonthProps) {
         />
         <ol>
           {Array.from({ length: 7 }, (_, i) => (
-            <li key={`${year}-${monthIndex}-weekday:${i}`}>
+            <li key={`${year}-${monthIndex}-weekday:${i}`} className='weekday'>
               {weekIntl.format(new Date(2026, 1, i + 1))}
             </li>
           ))}
