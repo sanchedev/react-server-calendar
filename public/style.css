@@ -26,11 +26,13 @@ ol {
 }
 
 main {
+  position: relative;
   width: 100%;
   height: 100dvh;
   overflow-x: hidden;
   overflow-y: auto;
   scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
 }
 
 .month-container {
@@ -47,6 +49,7 @@ main {
   flex-direction: column;
   height: 100%;
   gap: 2rem;
+  padding-top: 8rem;
 
   .month-title {
     display: flex;
@@ -63,6 +66,11 @@ main {
 
     button,
     a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      text-decoration: none;
       width: 2rem;
       height: 2rem;
       color: white;
@@ -81,15 +89,7 @@ main {
     display: grid;
     flex: 1;
     grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: 2rem repeat(5, 1fr);
-
-    .weekday {
-      color: gray;
-      align-self: center;
-      text-transform: uppercase;
-      font-size: 0.75rem;
-      font-weight: bold;
-    }
+    grid-template-rows: repeat(5, 1fr);
 
     li {
       text-align: center;
@@ -100,6 +100,7 @@ main {
       display: grid;
       width: 2.5rem;
       height: 2.5rem;
+      border-radius: 9999px;
       place-content: center;
     }
 
@@ -109,11 +110,83 @@ main {
     .day.today span {
       background-color: red;
       color: white;
+      font-weight: bold;
     }
     .day.today.blank span {
-      background-color: red;
-      color: white;
       opacity: 0.6667;
     }
+  }
+}
+
+div:has(#calendar-nav) {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 8rem;
+  background-color: #fffa;
+  backdrop-filter: blur(2px);
+}
+
+#calendar-nav {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  * {
+    max-width: 48rem;
+    width: 100%;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 2rem;
+    gap: 2rem;
+
+    h2 {
+      display: flex;
+      justify-content: space-between;
+      text-transform: capitalize;
+      flex: 1;
+
+      span:nth-child(2) {
+        text-align: end;
+      }
+    }
+
+    button,
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      text-decoration: none;
+      width: 2rem;
+      height: 2rem;
+      color: white;
+      background-color: black;
+      transition: 0.2s background-color;
+      border-radius: 0.25rem;
+      border: none;
+
+      &:hover {
+        background-color: #000b;
+      }
+    }
+  }
+
+  ol {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 0 2rem;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: gray;
+    height: 100%;
+    align-items: center;
   }
 }

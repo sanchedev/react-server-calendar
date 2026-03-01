@@ -23,5 +23,6 @@ const registerComp = <T extends Z>({
 }
 
 export const registry = {
-  MonthTitle: async () => registerComp(await import('./calendar/month-title')),
+  CalendarNav: async () =>
+    registerComp(await import('./calendar/calendar-nav')),
 }

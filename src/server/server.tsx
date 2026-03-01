@@ -4,19 +4,28 @@ import App from '../ui/app'
 
 const router = Router()
 
-router.get('/', (req, res) => {
+router.get('/{:year}', (req, res) => {
+  const rawYear = req.params.year
+
+  let year: number
+
+  if (rawYear == null) {
+    year = new Date().getFullYear()
+  } else {
+    year = Number(rawYear)
+    if (isNaN(year)) res.sendStatus(404)
+    if (rawYear !== year.toString()) res.sendStatus(404)
+  }
+
   const lang = getLocaleFromRequest(req)
-  const { pipe } = renderToPipeableStream(
-    <App lang={lang} year={new Date().getFullYear()} />,
-    {
-      bootstrapScripts: ['/script.js'],
-      onShellReady() {
-        console.log('READY!')
-        res.setHeader('Content-Type', 'text/html; utf-8')
-        pipe(res)
-      },
+  const { pipe } = renderToPipeableStream(<App lang={lang} year={year} />, {
+    bootstrapScripts: ['/script.js'],
+    onShellReady() {
+      console.log('READY!')
+      res.setHeader('Content-Type', 'text/html; utf-8')
+      pipe(res)
     },
-  )
+  })
 })
 
 function getLocaleFromRequest(req: Request) {
